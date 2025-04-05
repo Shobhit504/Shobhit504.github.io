@@ -1,6 +1,6 @@
-# Shobhit Saxena – Structural Engineering Portfolio
+# Shobhit Saxena – Structural Engineer
 
-🎓 M.Tech (Structural Engineering) | 💼 Structural Design Intern  
+🎓 B.Tech (Civil Engineering) | 🎓 M.Tech (Structural Engineering) | 💼 Structural Design Intern 
 📍 Ghaziabad, Uttar Pradesh | 📧 shobhitsaxena2708@gmail.com  
 
 ---
