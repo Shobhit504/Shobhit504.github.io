@@ -5,7 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shobhit Saxena | Structural Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    :root {
+      --bg-light: #f8f9fa;
+      --text-dark: #212529;
+      --accent: #0d6efd;
+      --dark-bg: #212529;
+      --light-text: #f1f1f1;
+    }
     * {
       margin: 0;
       padding: 0;
@@ -15,8 +23,13 @@
     body {
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
-      background-color: #f8f9fa;
-      color: #212529;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--light-text);
     }
     header {
       background: linear-gradient(to right, #0d6efd, #6610f2);
@@ -26,10 +39,11 @@
     }
     header h1 {
       font-size: 3rem;
-      margin-bottom: 0.5rem;
+      animation: fadeInDown 1s ease-in-out;
     }
     header p {
       font-size: 1.25rem;
+      animation: fadeInUp 1.5s ease-in-out;
     }
     nav {
       background: white;
@@ -43,7 +57,7 @@
     nav a {
       margin: 0 15px;
       text-decoration: none;
-      color: #0d6efd;
+      color: var(--accent);
       font-weight: 600;
     }
     section {
@@ -54,7 +68,7 @@
     h2 {
       font-size: 2rem;
       margin-bottom: 20px;
-      color: #0d6efd;
+      color: var(--accent);
     }
     .project-grid {
       display: grid;
@@ -75,7 +89,7 @@
     .resume-btn {
       display: inline-block;
       margin-top: 20px;
-      background-color: #0d6efd;
+      background-color: var(--accent);
       color: white;
       padding: 12px 24px;
       border-radius: 8px;
@@ -86,18 +100,62 @@
     .resume-btn:hover {
       background-color: #0b5ed7;
     }
+    .gallery {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding: 20px 0;
+    }
+    .gallery img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+    }
+    .dark-toggle {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      background: #0d6efd;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      background: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
     footer {
       background: #343a40;
       color: white;
       text-align: center;
       padding: 20px;
     }
-    a {
-      color: #0d6efd;
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
+
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
 
   <header>
     <h1>Shobhit Saxena</h1>
@@ -108,12 +166,13 @@
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
+    <a href="#models">Models</a>
     <a href="#contact">Contact</a>
   </nav>
 
   <section id="about">
     <h2>About Me</h2>
-    <p>I am a passionate structural engineer with M.Tech from Amity University and a strong foundation in seismic analysis, Revit BIM modeling, and structural design. I’ve contributed to real-world projects using ETABS, ANSYS, AutoCAD, and Navisworks during my internship and academic journey.</p>
+    <p>I am a passionate structural engineer with M.Tech from Amity University and a strong foundation in seismic analysis, Revit BIM modeling, and structural design.</p>
     <a class="resume-btn" href="Shobhit_Saxena_Resume.pdf" download>Download Resume</a>
   </section>
 
@@ -122,15 +181,15 @@
     <div class="project-grid">
       <div class="card">
         <h3>Seismic Analysis of University of MP</h3>
-        <p>Analyzed multi-story structure using ETABS, AutoCAD, and Excel. Collaborated with engineers to ensure code compliance and safety.</p>
+        <p>Analyzed multi-story structure using ETABS, AutoCAD, and Excel.</p>
       </div>
       <div class="card">
         <h3>Time Response of RCC & Steel Structures</h3>
-        <p>Compared seismic performance of high-rise buildings with different materials and support conditions using ETABS.</p>
+        <p>Compared seismic performance using ETABS and time-history analysis.</p>
       </div>
       <div class="card">
         <h3>Retrofitting Qutub Minar</h3>
-        <p>Modeled and analyzed historical structure under wind & seismic loads using Ansys. Identified potential retrofitting techniques.</p>
+        <p>Used Ansys for modeling and analysis of historic structure under loads.</p>
       </div>
     </div>
   </section>
@@ -140,16 +199,37 @@
     <p>ETABS • AutoCAD • Ansys • Revit • Navisworks • Python • C++ • BIM Coordination • Structural Analysis</p>
   </section>
 
+  <section id="models">
+    <h2>Revit / ETABS Models</h2>
+    <div class="gallery">
+      <img src="images/model1.jpg" alt="Model 1">
+      <img src="images/model2.jpg" alt="Model 2">
+      <img src="images/model3.jpg" alt="Model 3">
+    </div>
+  </section>
+
   <section id="contact">
     <h2>Contact</h2>
+    <form action="https://formsubmit.co/shobhitsaxena2708@gmail.com" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
     <p>Email: <a href="mailto:shobhitsaxena2708@gmail.com">shobhitsaxena2708@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/shobhit-saxena-a751001a0/" target="_blank">linkedin.com/in/shobhit-saxena-a751001a0</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/shobhit-saxena-a751001a0/" target="_blank">linkedin.com/in/shobhit-saxena</a></p>
     <p>GitHub: <a href="https://github.com/Shobhit504" target="_blank">github.com/Shobhit504</a></p>
   </section>
 
   <footer>
     <p>© 2025 Shobhit Saxena. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 
 </body>
 </html>
