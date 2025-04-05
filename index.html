@@ -1,235 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shobhit Saxena | Structural Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-light: #f8f9fa;
-      --text-dark: #212529;
-      --accent: #0d6efd;
-      --dark-bg: #212529;
-      --light-text: #f1f1f1;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
     body {
       font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      background-color: var(--bg-light);
-      color: var(--text-dark);
-      transition: background 0.3s, color 0.3s;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      transition: background-color 0.3s, color 0.3s;
     }
     .dark-mode {
-      background-color: var(--dark-bg);
-      color: var(--light-text);
+      background-color: #121212;
+      color: #fff;
     }
     header {
-      background: linear-gradient(to right, #0d6efd, #6610f2);
+      padding: 2rem;
+      text-align: center;
+      background: linear-gradient(90deg, #0077b6, #00b4d8);
       color: white;
-      padding: 60px 20px;
-      text-align: center;
     }
-    header h1 {
-      font-size: 3rem;
-      animation: fadeInDown 1s ease-in-out;
+    .btns {
+      margin: 1rem;
     }
-    header p {
-      font-size: 1.25rem;
-      animation: fadeInUp 1.5s ease-in-out;
-    }
-    nav {
-      background: white;
-      padding: 10px 20px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    nav a {
-      margin: 0 15px;
+    button, a.button {
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #0077b6;
+      color: white;
       text-decoration: none;
-      color: var(--accent);
-      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    button:hover, a.button:hover {
+      background: #023e8a;
     }
     section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
+      padding: 2rem;
     }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: var(--accent);
-    }
-    .project-grid {
+    .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
-    .card {
+    .project-card {
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
     }
-    .card:hover {
+    .project-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
-    .resume-btn {
-      display: inline-block;
-      margin-top: 20px;
-      background-color: var(--accent);
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    .resume-btn:hover {
-      background-color: #0b5ed7;
-    }
-    .gallery {
-      display: flex;
-      gap: 15px;
-      overflow-x: auto;
-      padding: 20px 0;
-    }
-    .gallery img {
+    .project-card img {
       width: 100%;
-      max-width: 300px;
+      height: 180px;
+      object-fit: cover;
+    }
+    .project-card h3 {
+      padding: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
       border-radius: 10px;
     }
-    .dark-toggle {
-      position: fixed;
-      right: 20px;
-      top: 20px;
-      background: #0d6efd;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 50px;
-      cursor: pointer;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    form button {
-      background: var(--accent);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
     footer {
-      background: #343a40;
-      color: white;
       text-align: center;
-      padding: 20px;
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      padding: 2rem;
+      background: #eee;
     }
   </style>
 </head>
+
 <body>
-
-  <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
-
   <header>
     <h1>Shobhit Saxena</h1>
-    <p>Structural Engineer | BIM | Seismic Design | ETABS | Revit</p>
+    <p>Structural Engineer | BIM Enthusiast | M.Tech (Structural)</p>
+    <div class="btns">
+      <a href="mailto:shobhitsaxena2708@gmail.com" class="button">Email</a>
+      <a href="https://www.linkedin.com/in/shobhit-saxena-a751001a0/" class="button" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Shobhit504" class="button" target="_blank">GitHub</a>
+      <button onclick="toggleMode()">🌙 Toggle Dark Mode</button>
+    </div>
   </header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#models">Models</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I am a passionate structural engineer with M.Tech from Amity University and a strong foundation in seismic analysis, Revit BIM modeling, and structural design.</p>
-    <a class="resume-btn" href="Shobhit_Saxena_Resume.pdf" download>Download Resume</a>
-  </section>
-
-  <section id="projects">
+  <section>
     <h2>Projects</h2>
-    <div class="project-grid">
-      <div class="card">
-        <h3>Seismic Analysis of University of MP</h3>
-        <p>Analyzed multi-story structure using ETABS, AutoCAD, and Excel.</p>
+    <div class="projects">
+      <div class="project-card">
+        <img src="images/etabs_model.png" alt="ETABS Model" />
+        <h3>Time Response Analysis of RCC & Steel Structures</h3>
       </div>
-      <div class="card">
-        <h3>Time Response of RCC & Steel Structures</h3>
-        <p>Compared seismic performance using ETABS and time-history analysis.</p>
+      <div class="project-card">
+        <img src="images/qutub_minar_analysis.png" alt="Qutub Minar Retrofit" />
+        <h3>Seismic Strengthening of Qutub Minar – Retrofit Design</h3>
       </div>
-      <div class="card">
-        <h3>Retrofitting Qutub Minar</h3>
-        <p>Used Ansys for modeling and analysis of historic structure under loads.</p>
+      <div class="project-card">
+        <img src="images/university_design.png" alt="University Design" />
+        <h3>Design & Seismic Analysis of University of MP (G+3)</h3>
       </div>
     </div>
   </section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <p>ETABS • AutoCAD • Ansys • Revit • Navisworks • Python • C++ • BIM Coordination • Structural Analysis</p>
-  </section>
-
-  <section id="models">
-    <h2>Revit / ETABS Models</h2>
-    <div class="gallery">
-      <img src="images/model1.jpg" alt="Model 1">
-      <img src="images/model2.jpg" alt="Model 2">
-      <img src="images/model3.jpg" alt="Model 3">
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <form action="https://formsubmit.co/shobhitsaxena2708@gmail.com" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
+  <section>
+    <h2>Contact Me</h2>
+    <form class="contact-form" action="https://formspree.io/f/mwkgyjlo" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
     </form>
-    <p>Email: <a href="mailto:shobhitsaxena2708@gmail.com">shobhitsaxena2708@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/shobhit-saxena-a751001a0/" target="_blank">linkedin.com/in/shobhit-saxena</a></p>
-    <p>GitHub: <a href="https://github.com/Shobhit504" target="_blank">github.com/Shobhit504</a></p>
   </section>
 
   <footer>
-    <p>© 2025 Shobhit Saxena. All rights reserved.</p>
+    <p>&copy; 2025 Shobhit Saxena. All rights reserved.</p>
   </footer>
 
   <script>
-    function toggleDarkMode() {
+    function toggleMode() {
       document.body.classList.toggle('dark-mode');
     }
   </script>
-
 </body>
+
 </html>
