@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structural Engineer Loader</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: #0a0f1a;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    .loader-container {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: linear-gradient(rgba(10,15,26,0.95), rgba(10,15,26,0.95)), url('https://www.transparenttextures.com/patterns/blueprint.png');
+      background-size: cover;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .scaffold {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      grid-template-rows: repeat(6, 60px);
+      gap: 6px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .beam {
+      width: 60px;
+      height: 60px;
+      background: #1f2937;
+      border: 2px solid #3b82f6;
+      box-shadow: 0 0 10px #3b82f6aa;
+      opacity: 0;
+      animation: rise 4.8s ease forwards;
+    }
+
+    .beam:nth-child(1) { animation-delay: 0.0s; }
+    .beam:nth-child(2) { animation-delay: 0.15s; }
+    .beam:nth-child(3) { animation-delay: 0.3s; }
+    .beam:nth-child(4) { animation-delay: 0.45s; }
+    .beam:nth-child(5) { animation-delay: 0.6s; }
+    .beam:nth-child(6) { animation-delay: 0.75s; }
+    .beam:nth-child(7) { animation-delay: 0.9s; }
+    .beam:nth-child(8) { animation-delay: 1.05s; }
+    .beam:nth-child(9) { animation-delay: 1.2s; }
+    .beam:nth-child(10) { animation-delay: 1.35s; }
+    .beam:nth-child(11) { animation-delay: 1.5s; }
+    .beam:nth-child(12) { animation-delay: 1.65s; }
+    .beam:nth-child(13) { animation-delay: 1.8s; }
+    .beam:nth-child(14) { animation-delay: 1.95s; }
+    .beam:nth-child(15) { animation-delay: 2.1s; }
+    .beam:nth-child(16) { animation-delay: 2.25s; }
+    .beam:nth-child(17) { animation-delay: 2.4s; }
+    .beam:nth-child(18) { animation-delay: 2.55s; }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: translateY(-5px);
+      }
+    }
+
+    .message {
+      margin-top: 40px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-align: center;
+      min-height: 40px;
+      z-index: 2;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 1;
+    }
+
+    .fade-out {
+      opacity: 0;
+    }
+
+    .blueprint-lines::before,
+    .blueprint-lines::after {
+      content: '';
+      position: absolute;
+      background: #3b82f633;
+    }
+
+    .blueprint-lines::before {
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+    }
+
+    .blueprint-lines::after {
+      left: 0;
+      top: 50%;
+      height: 2px;
+      width: 100%;
+    }
+
+    .final-message {
+      color: white;
+      text-align: center;
+      margin-top: 40vh;
+      font-size: 2rem;
+      font-weight: bold;
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-container blueprint-lines" id="loader">
+    <div class="scaffold">
+      <div class="beam"></div><div class="beam"></div><div class="beam"></div>
+      <div class="beam"></div><div class="beam"></div><div class="beam"></div>
+      <div class="beam"></div><div class="beam"></div><div class="beam"></div>
+      <div class="beam"></div><div class="beam"></div><div class="beam"></div>
+      <div class="beam"></div><div class="beam"></div><div class="beam"></div>
+      <div class="beam"></div><div class="beam"></div><div class="beam"></div>
+    </div>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    const messages = [
+      "Preparing your Structural Portfolio Environment...",
+      "Importing Blueprint Specifications...",
+      "Verifying Portfolio Integrity…"
+    ];
+
+    const messageElement = document.getElementById('message');
+    const loaderContainer = document.getElementById('loader');
+    let index = 0;
+
+    function showMessage() {
+      if (index < messages.length) {
+        messageElement.classList.remove('fade-out');
+        messageElement.textContent = messages[index];
+
+        setTimeout(() => {
+          messageElement.classList.add('fade-out');
+          setTimeout(() => {
+            index++;
+            showMessage();
+          }, 400);
+        }, 1100);
+      } else {
+        loaderContainer.style.opacity = 0;
+        setTimeout(() => {
+          document.body.innerHTML = '<div class="final-message"><H2>Welcome to My Structural Portfolio</H2></div>';
+// Redirect after the timeout
+          setTimeout(() => {
+            window.location.href = 'index v11.html'; // This will navigate to 'otherpage.html'
+          }, 2000); // Adjust this timeout duration as needed
+        }, 1000);
+      }
+    }
+
+    showMessage();
+  </script>
+</body>
+</html>
