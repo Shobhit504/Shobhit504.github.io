@@ -1,197 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shobhit Saxena | Structural Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2d3b1cfd9.js" crossorigin="anonymous"></script>
+  <title>Shobhit Saxena | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      transition: background-color 0.5s, color 0.5s;
-      background-color: #0d1117;
-      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
-    .dark-mode {
-      background-color: #ffffff;
-      color: #0d1117;
+    .typing::after {
+      content: '|';
+      animation: blink 1s infinite;
     }
 
-    header {
-      padding: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #161b22;
-      color: white;
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
-    .toggle-mode {
-      cursor: pointer;
-      font-size: 1.5rem;
-      z-index: 10;
+    .modern-spinner {
+      width: 100px;
+      height: 100px;
+      border: 3px solid transparent;
+      border-top: 3px solid #facc15;
+      border-right: 3px solid #60a5fa;
+      border-bottom: 3px solid #34d399;
+      border-left: 3px solid #f472b6;
+      border-radius: 50%;
+      animation: rotate 1.2s linear infinite;
     }
 
-    main {
-      padding: 2rem;
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      background: linear-gradient(to right, #1e2b38, #253c58);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .project-card h3 {
-      font-size: 1.6rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-card p {
-      font-size: 1rem;
-    }
-
-    .contact {
-      margin-top: 3rem;
-      text-align: center;
-    }
-
-    .social-buttons {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .social-buttons a {
-      text-decoration: none;
-      background-color: #0366d6;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-    }
-
-    .social-buttons a:hover {
-      background-color: #023d8f;
-    }
-
-    #loader {
+    .back-to-top {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #0d1117;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      padding: 1rem;
+      cursor: pointer;
       font-size: 2rem;
-      z-index: 1000;
+      display: none;
+      transition: all 0.3s ease;
+    }
+
+    .back-to-top:hover {
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    #hero {
+      height: 70vh;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+    }
+
+    .about-me {
+      margin-top: 3rem;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .hero-content {
+      transition: opacity 1s ease-in-out;
+    }
+
+    body.loading {
+      overflow: hidden;
     }
   </style>
 </head>
+<body class="bg-gray-900 dark:bg-white text-white dark:text-black font-sans transition-colors duration-300">
 
-<body>
-  <div id="loader">Loading... <span id="percentage">0%</span></div>
-  <header>
-    <h1>Shobhit Saxena</h1>
-    <div class="toggle-mode" onclick="toggleMode()">
-      <i class="fas fa-moon"></i>
+  <!-- Loader -->
+  <div id="loader" class="fixed inset-0 flex items-center justify-center bg-black text-white z-50">
+    <div class="relative flex items-center justify-center">
+      <div class="modern-spinner"></div>
+      <div id="loadingPercentage" class="absolute text-xl md:text-2xl font-semibold text-white">1%</div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-40 bg-gray-800 dark:bg-gray-100 shadow-md transition-colors duration-300 opacity-0" id="main-content">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Shobhit Saxena</h1>
+      <div class="space-x-6 text-sm flex items-center">
+        <a href="#projects" class="hover:text-yellow-400 dark:hover:text-yellow-600 transition">Projects</a>
+        <a href="#contact" class="hover:text-yellow-400 dark:hover:text-yellow-600 transition">Contact</a>
+        <button id="themeToggle" class="ml-4 px-3 py-1 text-sm hover:scale-105 transition bg-transparent">
+          <span id="themeIcon">☀️</span>
+        </button>
+      </div>
     </div>
   </header>
-  <main style="display: none;">
-    <p>Structural Engineer passionate about innovative and resilient building design.</p>
-    <section class="projects">
-      <div class="project-card">
-        <h3>🆚 Comparative Time Response Study</h3>
-        <p>RCC vs Steel (5, 15, 26-storey) in ETABS with Fixed and Spring Supports</p>
+
+  <!-- Hero -->
+  <section class="h-screen flex items-center justify-center text-center bg-gradient-to-br from-gray-900 to-gray-800 dark:from-white dark:to-gray-100 transition-colors duration-300 opacity-0" id="hero">
+    <div class="hero-content">
+      <h2 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm Shobhit 👋</h2>
+      <p class="text-xl md:text-2xl typing text-yellow-400">Structural Engineer | BIM | ETABS | Revit</p>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about-me" class="max-w-6xl mx-auto px-4 py-12 about-me">
+    <div class="text-center">
+      <h3 class="text-3xl font-bold mb-6">About Me</h3>
+      <p class="text-lg">
+        Structural Engineering postgraduate student in the final semester at Amity University with strong expertise in seismic and wind analysis, ETABS, BIM Revit and ANSYS. Experienced in structural simulations, design optimization, and civil project execution. Recognized for academic achievements and hands-on project work, including seismic retrofitting of heritage structures. Eager to contribute to innovative structural engineering firms through practical problem-solving and technical proficiency.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="max-w-6xl mx-auto px-4 py-12 opacity-0">
+    <h3 class="text-3xl font-bold mb-8 text-center">Projects</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div class="bg-white/10 dark:bg-black/10 p-8 rounded-xl shadow hover:shadow-lg transition duration-300 hover:scale-105">
+        <h4 class="text-xl font-semibold mb-2">🆚 Time Response Study</h4>
+        <p>RCC vs Steel (5, 15, 26-storey) using ETABS</p>
       </div>
-      <div class="project-card">
-        <h3>🏛️ Seismic Design: MP University</h3>
-        <p>Seismic Analysis and Design using ETABS 17 and ANSYS 24</p>
+      <div class="bg-white/10 dark:bg-black/10 p-8 rounded-xl shadow hover:shadow-lg transition duration-300 hover:scale-105">
+        <h4 class="text-xl font-semibold mb-2">🏛️ MP University Design</h4>
+        <p>Seismic Design using ETABS 17 and ANSYS 24</p>
       </div>
-      <div class="project-card">
-        <h3>🧱 Retrofit of Qutub Minar</h3>
-        <p>Seismic Strengthening using Ansys 24</p>
+      <div class="bg-white/10 dark:bg-black/10 p-8 rounded-xl shadow hover:shadow-lg transition duration-300 hover:scale-105">
+        <h4 class="text-xl font-semibold mb-2">🧱 Qutub Minar Retrofit</h4>
+        <p>Seismic Strengthening using Ansys</p>
       </div>
-      <div class="project-card">
-        <h3>♻️ Fly Ash & Silica Fume Concrete</h3>
+      <div class="bg-white/10 dark:bg-black/10 p-8 rounded-xl shadow hover:shadow-lg transition duration-300 hover:scale-105">
+        <h4 class="text-xl font-semibold mb-2">♻️ Fly Ash & Silica Fume Concrete</h4>
         <p>Sustainable concrete alternatives analyzed in detail</p>
-      </div>  
-    </section>
-
-    <section class="contact">
-      <p>If you'd like to collaborate or learn more about my work, feel free to reach out:</p>
-      <div class="social-buttons">
-        <a href="mailto:shobhitsaxena2708@gmail.com">Gmail</a>
-        <a href="https://www.linkedin.com/in/shobhit-saxena-a751001a0/" target="_blank">LinkedIn</a>
-        <a href="https://github.com/Shobhit504" target="_blank">GitHub</a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
+  <!-- Contact -->
+  <section id="contact" class="py-12 bg-gray-800 dark:bg-gray-100 text-center transition-colors duration-300 opacity-0">
+    <h3 class="text-3xl font-bold mb-4">Let's Connect</h3>
+    <p class="mb-6">Reach out to collaborate or discuss ideas</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="mailto:shobhitsaxena2708@gmail.com" class="bg-white/10 dark:bg-black/10 text-white dark:text-black px-6 py-2 rounded-xl shadow hover:shadow-lg hover:scale-105 transition">Gmail</a>
+      <a href="https://www.linkedin.com/in/shobhit-saxena-a751001a0/" target="_blank" class="bg-white/10 dark:bg-black/10 text-white dark:text-black px-6 py-2 rounded-xl shadow hover:shadow-lg hover:scale-105 transition">LinkedIn</a>
+      <a href="https://github.com/Shobhit504" target="_blank" class="bg-white/10 dark:bg-black/10 text-white dark:text-black px-6 py-2 rounded-xl shadow hover:shadow-lg hover:scale-105 transition">GitHub</a>
+    </div>
+  </section>
+
+  <footer class="text-center py-6 bg-gray-900 dark:bg-white text-gray-400 dark:text-gray-600 text-sm transition-colors duration-300 opacity-0">
+    © 2025 Shobhit Saxena. All rights reserved.
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div id="backToTop" class="back-to-top">↑</div>
+
+  <!-- Scripts -->
   <script>
-    let percent = 0;
-    const interval = setInterval(() => {
-      percent++;
-      document.getElementById("percentage").innerText = percent + "%";
-      if (percent >= 100) {
-        clearInterval(interval);
-        document.getElementById("loader").style.display = "none";
-        document.querySelector("main").style.display = "block";
-      }
-    }, 50);
+    // Theme toggle
+    const toggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
 
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
-      const icon = document.querySelector('.toggle-mode i');
-      if (document.body.classList.contains('dark-mode')) {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-      } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-      }
+    function updateThemeIcon() {
+      themeIcon.textContent = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
     }
+
+    toggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      updateThemeIcon();
+    });
+
+    updateThemeIcon();
+
+    // Loader
+    let percent = 1;
+    const loader = document.getElementById('loader');
+    const percentText = document.getElementById('loadingPercentage');
+    const interval = setInterval(() => {
+      if (percent <= 100) {
+        percentText.textContent = percent + '%';
+        percent++;
+      } else {
+        clearInterval(interval);
+        loader.style.display = 'none';
+        document.querySelectorAll('header, section, footer').forEach(el => {
+          el.classList.remove('opacity-0');
+          el.classList.add('transition-opacity', 'duration-700');
+        });
+        document.body.classList.remove('loading');
+      }
+    }, 30); // Reduced to ~3s
+
+    // About Me dynamic fade on scroll
+    const aboutMeSection = document.getElementById('about-me');
+    const heroContent = document.querySelector('.hero-content');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const sectionTop = aboutMeSection.offsetTop;
+      const sectionHeight = aboutMeSection.offsetHeight;
+
+      const distance = scrollY + windowHeight - sectionTop;
+
+      if (distance > 0 && scrollY < sectionTop + sectionHeight) {
+        const opacity = Math.min(distance / sectionHeight, 1);
+        aboutMeSection.style.opacity = opacity;
+      }
+
+      // Fade Hero Content
+      heroContent.style.opacity = scrollY > 100 ? '0' : '1';
+
+      // Back to Top Button
+      backToTopButton.style.display = scrollY > 500 ? 'block' : 'none';
+    });
+
+    // Back to Top Button Scroll
+    const backToTopButton = document.getElementById('backToTop');
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
-
 </html>
-
