@@ -63,7 +63,7 @@
 
 ## 🧰 Skills
 
-- **Structural Tools**: ETABS, STAAD.Pro, AutoCAD, Ansys, Revit
+- **Structural Tools**: ETABS, SAFE, SAP, STAAD.Pro, AutoCAD, Ansys, Revit
 - **Languages**: Python, C++, Kotlin
 - **Concepts**: BIM, Seismic & Wind Analysis, Retrofitting, IS 456/1893/875
 
